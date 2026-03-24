@@ -357,9 +357,9 @@ The following algorithm identifiers are defined:
 {: #tbl-ecdsa-split title="ECDSA split signing algorithm values."}
 | Name         | COSE Value | Verification algorithm | Description |
 | ------------ | ---------- | ---------------------- | ----------- |
-| ESP256-split | TBD        | ESP256                 | ESP256 split signing as defined in {{ecdsa-split}}
-| ESP384-split | TBD        | ESP384                 | ESP384 split signing as defined in {{ecdsa-split}}
-| ESP512-split | TBD        | ESP512                 | ESP512 split signing as defined in {{ecdsa-split}}
+| ESP256-split | TBD        | ESP256                 | ESP256 [RFC9864] split signing as defined in {{ecdsa-split}}
+| ESP384-split | TBD        | ESP384                 | ESP384 [RFC9864] split signing as defined in {{ecdsa-split}}
+| ESP512-split | TBD        | ESP512                 | ESP512 [RFC9864] split signing as defined in {{ecdsa-split}}
 
 
 Note: This is distinct from the similarly named Split-ECDSA (SECDSA) [SECDSA],
@@ -929,7 +929,7 @@ for their reviews of and contributions to this specification.
 
 * Moved reference FIPS-186-5 from informative to normative references.
 * Fixed subtly incorrect CDDL syntax in example in section "COSE Signing Arguments Common Parameters".
-* Added missing references to RFC 8610.
+* Added missing references to RFC 8610 and RFC 9864.
 
 -00
 
