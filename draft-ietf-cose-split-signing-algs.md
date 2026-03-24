@@ -447,7 +447,7 @@ can be found in the IANA "COSE Signing Arguments Common Parameters" registry est
 Additional parameters defined for specific signing algorithms
 can be found in the IANA "COSE Signing Arguments Algorithm Parameters" registry established in {{alg-params-reg}}.
 
-The CDDL grammar describing `COSE_Sign_Args`, using the CDDL fragment defined in {{Section 1.5 of RFC9052}}, is:
+The CDDL [RFC8610] grammar describing `COSE_Sign_Args`, using the CDDL fragment defined in {{Section 1.5 of RFC9052}}, is:
 
 ~~~cddl
 COSE_Sign_Args = {
@@ -473,7 +473,7 @@ This document defines a set of common parameters for a COSE Signing Arguments ob
 
 Definitions of COSE algorithms MAY define additional algorithm-specific parameters for `COSE_Sign_Args`.
 
-The following CDDL example conveys additional arguments for signing data
+The following CDDL [RFC8610] example conveys additional arguments for signing data
 using the ESP256-split algorithm (see {{ecdsa-split}})
 and a key derived using `ARKG-P256` [I-D.bradleylundberg-ARKG]:
 
@@ -929,6 +929,7 @@ for their reviews of and contributions to this specification.
 
 * Moved reference FIPS-186-5 from informative to normative references.
 * Fixed subtly incorrect CDDL syntax in example in section "COSE Signing Arguments Common Parameters".
+* Added missing references to RFC 8610.
 
 -00
 
