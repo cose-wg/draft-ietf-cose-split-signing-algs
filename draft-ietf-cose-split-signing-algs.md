@@ -478,7 +478,7 @@ using the ESP256-split algorithm (see {{ecdsa-split}})
 and a key derived using `ARKG-P256` [I-D.bradleylundberg-ARKG]:
 
 ~~~cddl
-{
+example = {
   3: -65539,   ; alg: ESP256-split with ARKG-P256 (placeholder value)
 
                ; ARKG-P256 key handle
@@ -928,6 +928,7 @@ for their reviews of and contributions to this specification.
 -01
 
 * Moved reference FIPS-186-5 from informative to normative references.
+* Fixed subtly incorrect CDDL syntax in example in section "COSE Signing Arguments Common Parameters".
 
 -00
 
