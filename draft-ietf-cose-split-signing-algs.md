@@ -48,6 +48,12 @@ author:
   country: United States
 
 normative:
+  FIPS-186-5:
+    target: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf
+    title: Digital Signature Standard (DSS)
+    author:
+    - org: National Institute of Standards and Technology
+    date: February 2023
   I-D.bradleylundberg-ARKG: I-D.draft-bradleylundberg-cfrg-arkg
   IANA.COSE:
     target: https://www.iana.org/assignments/cose/
@@ -95,12 +101,6 @@ informative:
     author:
     - org: National Institute of Standards and Technology
     date: August 2024
-  FIPS-186-5:
-    target: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf
-    title: Digital Signature Standard (DSS)
-    author:
-    - org: National Institute of Standards and Technology
-    date: February 2023
   I-D.COSE-Hash-Envelope: I-D.draft-ietf-cose-hash-envelope
   NIST-SP-800-73-5:
     target: https://doi.org/10.6028/NIST.SP.800-73pt2-5
@@ -924,6 +924,10 @@ for their reviews of and contributions to this specification.
 
 # Document History
 {: numbered="false"}
+
+-01
+
+* Moved reference FIPS-186-5 from informative to normative references.
 
 -00
 
