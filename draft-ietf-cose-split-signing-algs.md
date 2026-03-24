@@ -66,12 +66,6 @@ normative:
   RFC8610:
   RFC9052:
   RFC9864:
-  SEC1:
-    target: https://www.secg.org/sec1-v2.pdf
-    author:
-    - org: Certicom Research
-    date: May 2009
-    title: "SEC 1: Elliptic Curve Cryptography"
 
 informative:
   FALCON:
@@ -930,6 +924,7 @@ for their reviews of and contributions to this specification.
 * Moved reference FIPS-186-5 from informative to normative references.
 * Fixed subtly incorrect CDDL syntax in example in section "COSE Signing Arguments Common Parameters".
 * Added missing references to RFC 8610 and RFC 9864.
+* Removed unused reference SEC1.
 
 -00
 
