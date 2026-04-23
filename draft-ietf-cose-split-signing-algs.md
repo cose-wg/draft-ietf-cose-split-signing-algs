@@ -389,11 +389,6 @@ The following algorithm identifiers are defined:
 | Ed448ph-split   | TBD        | Ed448ph                | EdDSA using the Ed448ph parameter set in {{Section 5.2 of RFC8032}} and split as defined in {{eddsa-split}} |
 
 
-## ECDSA with ARKG {#ecdsa-arkg}
-
-TODO: Move {{Section 5 of I-D.bradleylundberg-ARKG}} to this document
-
-
 ## Defining Split Signing Algorithms {#defining-split-algs}
 
 Future definitions of additional split signing algorithm identifiers
@@ -645,62 +640,6 @@ This section registers the following values in the IANA "COSE Algorithms" regist
   - Reference: {{eddsa-split}} of this specification
   - Recommended: Yes
 
-- Name: ESP256-ARKG
-  - Value: TBD
-  - Description: ESP256 using private key derived by ARKG-P256
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: [RFC9864], [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP256-split-ARKG
-  - Value: TBD (placeholder -65539)
-  - Description: ESP256-split using private key derived by ARKG-P256
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: This document, [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP384-ARKG
-  - Value: TBD
-  - Description: ESP384 using private key derived by ARKG-P384
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: [RFC9864], [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP384-split-ARKG
-  - Value: TBD
-  - Description: ESP384-split using private key derived by ARKG-P384
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: This document, [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP512-ARKG
-  - Value: TBD
-  - Description: ESP512 using private key derived by ARKG-P521
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: [RFC9864], [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP512-split-ARKG
-  - Value: TBD
-  - Description: ESP512-split using private key derived by ARKG-P521
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: This document, [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
-- Name: ESP256K-ARKG
-  - Value: TBD
-  - Description: ESP256K using private key derived by ARKG-P256k
-  - Capabilities: \[kty\]
-  - Change Controller: IETF
-  - Reference: [RFC8812], [I-D.bradleylundberg-ARKG]
-  - Recommended: TBD
-
 
 ## COSE Signing Arguments Common Parameters Registry {#common-params-reg}
 
@@ -887,18 +826,13 @@ There are currently two known implementations using features defined by this spe
 
 ## Dependent Specifications {#impl-status-dependents}
 
-This specification is mutually dependent on [I-D.bradleylundberg-ARKG]:
+As indicated in the previous section,
+the Internet-Draft of ARKG [I-D.bradleylundberg-ARKG] extends this specification with definitions for ARKG:
 
-- {{Section 5.2 of I-D.bradleylundberg-ARKG}}
-  duplicates the definitions of the COSE algorithm identifiers
-  ESP256-ARKG, ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG and ESP512-split-ARKG
-  registered in {{cose-alg-reg}} of this specification.
-
-- The initial contents of the COSE Signing Arguments Algorithm Parameters Registry registered in {{alg-params-reg-initial}}
-  are defined in {{Section 5.3 of I-D.bradleylundberg-ARKG}}.
-
-These sections of [I-D.bradleylundberg-ARKG] will likely be moved to {{ecdsa-arkg}}
-in a future revision of this specification.
+- Section "5.2 COSE algorithms" defines COSE algorithm identifiers ESP256-split-ARKG, ESP384-split-ARKG
+  and ESP512-split-ARKG based on the ECDSA identifiers defined in this specification ({{ecdsa-split}}).
+- Section "5.3 COSE signing arguments" defines a representation for ARKG arguments
+  using the `COSE_Sign_Args` data structure defined in this specification ({{cose-sign-args}}).
 
 
 --- back
@@ -926,6 +860,9 @@ for their reviews of and contributions to this specification.
 * Added missing references to RFC 8610 and RFC 9864.
 * Removed unused reference SEC1.
 * Fixed digester referred to as host in "Prior Art" subsection "PKCS #11".
+* Reverted import of COSE Algorithms registrations from draft-bradleylundberg-cfrg-arkg made in individual-draft -07:
+  ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG, ESP512-split-ARKG, ESP256K-ARKG.
+* Removed placeholder section "ECDSA with ARKG" added in individual-draft -07.
 
 -00
 
