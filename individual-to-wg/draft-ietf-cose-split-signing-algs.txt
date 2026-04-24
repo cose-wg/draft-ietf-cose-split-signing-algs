@@ -5,8 +5,8 @@
 COSE                                                    E. Lundberg, Ed.
 Internet-Draft                                                    Yubico
 Intended status: Standards Track                             M. B. Jones
-Expires: 25 October 2026                          Self-Issued Consulting
-                                                           23 April 2026
+Expires: 26 October 2026                          Self-Issued Consulting
+                                                           24 April 2026
 
 
                    Split Signing Algorithms for COSE
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2026.
+   This Internet-Draft will expire on 26 October 2026.
 
 Copyright Notice
 
@@ -1171,100 +1171,10 @@ Acknowledgements
 
 Document History
 
-   -07
-
-   *  Populated IANA Considerations sections.
-
-   *  Imported COSE Algorithms registrations from draft-bradleylundberg-
-      cfrg-arkg: ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG,
-      ESP512-ARKG, ESP512-split-ARKG, ESP256K-ARKG.
-
-   *  Added placeholder section "ECDSA with ARKG" for additional
-      definitions to be imported from draft-bradleylundberg-cfrg-arkg.
-
-   -06
-
-   *  Added "Prior Art" section to Introduction.
-
-   -05
-
-   *  Fixed ESP384-split misspelled as ESP381-split.
-
-   *  Clarified that non-"-split" alg IDs defined here may be exposed to
-      verifiers.
-
-   *  Clarified that transport of digest is out of scope, but expected
-      to be passed as data to be signed.
-
-   *  Added Security Considerations section "Incorrect Use of Split
-      Signing Algorithm Identifiers".
-
-   *  Added Implementation Considerations section "Using Non-Split
-      Signing Algorithm Identifiers in a Split Signing Protocol".
-
-   *  Added section "Defining Split Signing Algorithms" with guidance
-      for handling domain separation tags in new definitions.
-
-   *  Clarified in introduction that Ed25519 and Ed25519ph(-split) have
-      distinct verification algorithms.
-
-   *  Clarified in section "Protocol-Level Trusted Roles" why digester
-      is necessarily trusted.
-
-   *  Clarified in section "Component-Level Trusted Roles" that
-      redundant forgeries are acceptable, and added example of key
-      compromise concern for naively hashed FALCON.
-
-   -04
-
-   *  Added Implementation Status section.
-
-   -03
-
-   *  Updated reference to ARKG parameter info renamed to ctx.
-
-   *  Refined abstract and introduction to emphasize that the central
-      novelty is not split algorithms as a concept, but providing COSE
-      algorithm identifiers for use cases that benefit from such
-      splitting.
-
-   *  Replaced reference to draft-ietf-jose-fully-specified-algorithms
-      with RFC 9864.
-
-   *  Added inline definitions of Ed25519ph and Ed448ph registrations,
-      replacing speculative references to registrations that do not
-      exist elsewhere.
-
-   *  Added missing captions to Tables 1 and 2.
-
-   *  Added Security Considerations section.
-
-   -02
-
-   *  Renamed document from "COSE Algorithms for Two-Party Signing" to
-      "Split signing algorithms for COSE" and updated introduction and
-      terminology accordingly.
-
-   *  Dropped definitions for HashML-DSA, as split variants of ML-DSA
-      are being actively discussed in other IETF groups.
-
-   *  Changed "Base algorithm" heading in definition tables to
-      "Verification algorithm".
-
-   *  Remodeled COSE_Key_Ref as COSE_Sign_Args.
-
-      -  Dropped definitions of reference types for COSE Key Types
-         registry.
-
-   -01
-
-   *  Added IANA registration requests for algorithms defined.
-
-   *  Updated references and other editorial tweaks.
-
    -00
 
-   *  Initial individual draft
+   *  Created initial working group draft from draft-lundberg-cose-two-
+      party-signing-algs-07
 
 Authors' Addresses
 
