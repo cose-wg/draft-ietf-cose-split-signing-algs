@@ -280,7 +280,7 @@ Mechanisms are defined in section "6 Mechanisms", which notably includes the sub
 Thus PKCS #11 supports both split signing using the **CKM_ECDSA** mechanism
 and "non-split" signing using the **CKM_ECDSA_SHA\*** mechanisms;
 when using **CKM_ECDSA**,
-the PKCS #11 caller acts as _host_ and the Cryptoki implementation acts as _signer_.
+the PKCS #11 caller acts as _digester_ and the Cryptoki implementation acts as _signer_.
 
 
 ### PIV: FIPS-201, NIST SP 800
@@ -925,6 +925,7 @@ for their reviews of and contributions to this specification.
 * Fixed subtly incorrect CDDL syntax in example in section "COSE Signing Arguments Common Parameters".
 * Added missing references to RFC 8610 and RFC 9864.
 * Removed unused reference SEC1.
+* Fixed digester referred to as host in "Prior Art" subsection "PKCS #11".
 
 -00
 
