@@ -21,7 +21,9 @@ keyword:
  - Algorithms
  - Split Algorithms
  - Split Signing
- - ARKG
+ - HashEdDSA
+ - Ed25519ph
+ - Ed448ph
 
 venue:
   group: "COSE"
@@ -54,7 +56,6 @@ normative:
     author:
     - org: National Institute of Standards and Technology
     date: February 2023
-  I-D.bradleylundberg-ARKG: I-D.draft-bradleylundberg-cfrg-arkg
   IANA.COSE:
     target: https://www.iana.org/assignments/cose/
     title: CBOR Object Signing and Encryption (COSE)
@@ -96,6 +97,7 @@ informative:
     - org: National Institute of Standards and Technology
     date: August 2024
   I-D.COSE-Hash-Envelope: I-D.draft-ietf-cose-hash-envelope
+  I-D.bradleylundberg-ARKG: I-D.draft-bradleylundberg-cfrg-arkg
   NIST-SP-800-73-5:
     target: https://doi.org/10.6028/NIST.SP.800-73pt2-5
     title: 'Interfaces for Personal Identity Verification: Part 2 – PIV Card Application Card Command Interface'
@@ -132,6 +134,7 @@ informative:
   RFC9380:
   RFC9413:
   RFC9881:
+  RFC9964:
   SECDSA:
     target: https://eprint.iacr.org/2021/910
     title: 'SECDSA: Mobile signing and authentication under classical "sole control"'
@@ -421,8 +424,9 @@ and ensures that the signing protocol can only produce HashML-DSA signatures.
 While many signature algorithms take the private key and data to be signed as the only two parameters,
 some signature algorithms have additional parameters that must also be set.
 For example,
-to sign using a key derived by ARKG [I-D.bradleylundberg-ARKG],
-two additional arguments `kh` and `ctx` are needed in `ARKG-Derive-Private-Key` to derive the signing private key.
+Ed25519ph and Ed25519ctx [RFC8032] have a `context` parameter in addition to the message `M`.
+Similarly the ML-DSA [FIPS-204] signing function has a _ctx_ parameter,
+although the algorithm identifiers in [RFC9964] are defined to take a constant empty value for _ctx_.
 
 While such additional arguments are simple to provide to the API of the signing procedure in a single-party context,
 in a split signing context these additional arguments also need to be conveyed from the _digester_ to the _signer_.
@@ -461,26 +465,6 @@ This document defines a set of common parameters for a COSE Signing Arguments ob
   If the algorithms do not match, then the signature operation MUST be aborted with an error.
 
 Definitions of COSE algorithms MAY define additional algorithm-specific parameters for `COSE_Sign_Args`.
-
-The following CDDL [RFC8610] example conveys additional arguments for signing data
-using the ESP256-split algorithm (see {{ecdsa-split}})
-and a key derived using `ARKG-P256` [I-D.bradleylundberg-ARKG]:
-
-~~~cddl
-example = {
-  3: -65539,   ; alg: ESP256-split with ARKG-P256 (placeholder value)
-
-               ; ARKG-P256 key handle
-               ; (HMAC-SHA-256-128 followed by
-                  SEC1 uncompressed ECDH public key)
-  -1: h'27987995f184a44cfa548d104b0a461d
-        0487fc739dbcdabc293ac5469221da91b220e04c681074ec4692a76ffacb9043de
-          c2847ea9060fd42da267f66852e63589f0c00dc88f290d660c65a65a50c86361',
-
-               ; ctx argument to ARKG-Derive-Private-Key
-  -2: 'ARKG-P256.test vectors',
-}
-~~~
 
 
 # Security Considerations {#security-cons}
@@ -725,56 +709,7 @@ Reference:
 
 ### Initial Contents {#alg-params-reg-initial}
 
-The initial contents of this registry are as follows.
-These values come from {{Section 5.3 of I-D.bradleylundberg-ARKG}}.
-
-
-#### kh
-
-Name:
-: kh
-
-Algorithms:
-: ESP256-ARKG, ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG, ESP512-split-ARKG, ESP256K-ARKG
-
-Label:
-: -1
-
-Cbor Type:
-: bstr
-
-Required:
-: Required
-
-Description:
-: kh argument to ARKG-Derive-Private-Key.
-
-Reference:
-: {{Section 5.3 of I-D.bradleylundberg-ARKG}}
-
-
-#### ctx
-
-Name:
-: ctx
-
-Algorithms:
-: ESP256-ARKG, ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG, ESP512-split-ARKG, ESP256K-ARKG
-
-Label:
-: -2
-
-Cbor Type:
-: bstr
-
-Required:
-: Required
-
-Description:
-: ctx argument to ARKG-Derive-Private-Key.
-
-Reference:
-: {{Section 5.3 of I-D.bradleylundberg-ARKG}}
+This registry is initially empty.
 
 
 # Implementation Status {#impl-status}
@@ -863,6 +798,9 @@ for their reviews of and contributions to this specification.
 * Reverted import of COSE Algorithms registrations from draft-bradleylundberg-cfrg-arkg made in individual-draft -07:
   ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG, ESP512-split-ARKG, ESP256K-ARKG.
 * Removed placeholder section "ECDSA with ARKG" added in individual-draft -07.
+* Replaced ARKG examples with Ed25519ph and ML-DSA examples.
+* Removed COSE_Sign_args registry definitions for ARKG.
+* Moved draft-bradleylundberg-cfrg-arkg from normative to informative references.
 
 -00
 
