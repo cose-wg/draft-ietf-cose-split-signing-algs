@@ -374,6 +374,8 @@ of the steps of the HashEdDSA signing algorithm [RFC8032]:
 - The _digester_ computes the value `PH(M)` defined in the EdDSA signing procedure.
 - The message input to the _signer_ is the value `PH(M)` defined in the EdDSA signing procedure.
   This value is represented as `M` in the PureEdDSA signing procedure.
+- The `context` input MAY be conveyed to the _signer_ using the `COSE_Sign_Args` structure defined in {{cose-sign-args}}.
+  If not given, `context` defaults to an empty octet string.
 - The _signer_ executes the PureEdDSA signing procedure,
   where the value denoted `M` in the PureEdDSA signing procedure
   takes the value denoted `PH(M)` in the EdDSA signing procedure.
@@ -390,6 +392,19 @@ The following algorithm identifiers are defined:
 | Ed25519ph-split | TBD        | Ed25519ph              | EdDSA using the Ed25519ph parameter set in {{Section 5.1 of RFC8032}} and split as defined in {{eddsa-split}} |
 | Ed448ph         | TBD        | Ed448ph                | EdDSA using the Ed448ph parameter set in {{Section 5.2 of RFC8032}} |
 | Ed448ph-split   | TBD        | Ed448ph                | EdDSA using the Ed448ph parameter set in {{Section 5.2 of RFC8032}} and split as defined in {{eddsa-split}} |
+
+- The `context` input MUST be the empty octet string
+  when the signature result is used in COSE structures without a way to convey a `context` argument.
+  This includes the `COSE_Sign1` and `COSE_Signature` structures.
+
+{{tbl-cose-args-hasheddsa}} defines a HashEdDSA-specific parameter for the `COSE_Sign_Args` structure defined in {{cose-sign-args}}.
+The parameter -1 conveys the `context` input to HashEdDSA signing,
+and is REQUIRED for all the relevant `alg` values.
+
+{: #tbl-cose-args-hasheddsa title="Algorithm parameters for COSE_Sign_Args."}
+| Name    | Label | Type | Required? | Algorithm | Description |
+|---------|-------|------|-----------|-----------|-------------|
+| context | -1    | bstr | Required  | Ed25519ph-split, Ed448ph-split | `context` argument to HashEdDSA signing. [RFC8032] |
 
 
 ## Defining Split Signing Algorithms {#defining-split-algs}
@@ -465,6 +480,18 @@ This document defines a set of common parameters for a COSE Signing Arguments ob
   If the algorithms do not match, then the signature operation MUST be aborted with an error.
 
 Definitions of COSE algorithms MAY define additional algorithm-specific parameters for `COSE_Sign_Args`.
+
+The following CDDL [RFC8610] example conveys the `context` argument
+for signing data using the Ed25519ph-split algorithm (see {{eddsa-split}}):
+
+~~~cddl
+example = {
+  3: -303,    ; alg: Ed25519ph-split (registration pending)
+
+              ; Ed25519ph context (byte string of 0 to 255 octets)
+  -1: 'Split Signing Algorithms for COSE',
+}
+~~~
 
 
 # Security Considerations {#security-cons}
@@ -709,7 +736,31 @@ Reference:
 
 ### Initial Contents {#alg-params-reg-initial}
 
-This registry is initially empty.
+The initial contents of this registry are as follows.
+
+
+#### context
+
+Name:
+: context
+
+Algorithms:
+: Ed25519ph, Ed25519ph-split, Ed448ph, Ed448ph-split
+
+Label:
+: -1
+
+Cbor Type:
+: bstr
+
+Required:
+: Required
+
+Description:
+: context argument to EdDSA signing and verification.
+
+Reference:
+: {{eddsa-split}}
 
 
 # Implementation Status {#impl-status}
@@ -801,6 +852,8 @@ for their reviews of and contributions to this specification.
 * Replaced ARKG examples with Ed25519ph and ML-DSA examples.
 * Removed COSE_Sign_args registry definitions for ARKG.
 * Moved draft-bradleylundberg-cfrg-arkg from normative to informative references.
+* Defined context input for Ed25519ph and Ed448ph.
+* Added COSE_Sign_Args member for context argument for Ed25519ph-split and Ed448ph-split.
 
 -00
 
