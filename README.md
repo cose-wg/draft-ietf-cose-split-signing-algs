@@ -1,6 +1,6 @@
 # Split Signing Algorithms for COSE
 
-This is the working area for the individual Internet-Draft, "COSE Algorithms for Two-Party Signing".
+This is the working area for the COSE WG Internet-Draft, "Split Signing Algorithms for COSE".
 
 * [Editor's Copy](https://cose-wg.github.io/draft-ietf-cose-split-signing-algs/#go.draft-ietf-cose-split-signing-algs.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-cose-split-signing-algs)
