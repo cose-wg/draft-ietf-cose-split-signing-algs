@@ -1570,13 +1570,9 @@ The PureEdDSA signing procedure is defined in the second paragraph of <span><a h
 This value is represented as <code>M</code> in the PureEdDSA signing procedure.<a href="#section-2.2-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-2.4">
-            <p id="section-2.2-2.4.1">The <code>context</code> input MAY be conveyed to the <em>signer</em> using the <code>COSE_Sign_Args</code> structure defined in <a href="#cose-sign-args" class="auto internal xref">Section 3</a>.
-If not given, <code>context</code> defaults to an empty octet string.<a href="#section-2.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-2.2-2.5">
-            <p id="section-2.2-2.5.1">The <em>signer</em> executes the PureEdDSA signing procedure,
+            <p id="section-2.2-2.4.1">The <em>signer</em> executes the PureEdDSA signing procedure,
 where the value denoted <code>M</code> in the PureEdDSA signing procedure
-takes the value denoted <code>PH(M)</code> in the EdDSA signing procedure.<a href="#section-2.2-2.5.1" class="pilcrow">¶</a></p>
+takes the value denoted <code>PH(M)</code> in the EdDSA signing procedure.<a href="#section-2.2-2.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-2.2-3">PureEdDSA <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> cannot be divided in this way
@@ -1623,46 +1619,6 @@ since such a division would require that the <em>digester</em> has access to the
               <td class="text-left" rowspan="1" colspan="1">TBD</td>
               <td class="text-left" rowspan="1" colspan="1">Ed448ph</td>
               <td class="text-left" rowspan="1" colspan="1">EdDSA using the Ed448ph parameter set in <span><a href="https://rfc-editor.org/rfc/rfc8032#section-5.2" class="relref">Section 5.2</a> of [<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> and split as defined in <a href="#eddsa-split" class="auto internal xref">Section 2.2</a>
-</td>
-            </tr>
-          </tbody>
-        </table>
-</div>
-<ul class="normal">
-<li class="normal" id="section-2.2-6.1">
-            <p id="section-2.2-6.1.1">The <code>context</code> input MUST be the empty octet string
-when the signature result is used in COSE structures without a way to convey a <code>context</code> argument.
-This includes the <code>COSE_Sign1</code> and <code>COSE_Signature</code> structures.<a href="#section-2.2-6.1.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-<p id="section-2.2-7"><a href="#tbl-cose-args-hasheddsa" class="auto internal xref">Table 3</a> defines a HashEdDSA-specific parameter for the <code>COSE_Sign_Args</code> structure defined in <a href="#cose-sign-args" class="auto internal xref">Section 3</a>.
-The parameter -1 conveys the <code>context</code> input to HashEdDSA signing,
-and is REQUIRED for all the relevant <code>alg</code> values.<a href="#section-2.2-7" class="pilcrow">¶</a></p>
-<span id="name-algorithm-parameters-for-co"></span><div id="tbl-cose-args-hasheddsa">
-<table class="center" id="table-3">
-          <caption>
-<a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-algorithm-parameters-for-co" class="selfRef">Algorithm parameters for COSE_Sign_Args.</a>
-          </caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Name</th>
-              <th class="text-left" rowspan="1" colspan="1">Label</th>
-              <th class="text-left" rowspan="1" colspan="1">Type</th>
-              <th class="text-left" rowspan="1" colspan="1">Required?</th>
-              <th class="text-left" rowspan="1" colspan="1">Algorithm</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">context</td>
-              <td class="text-left" rowspan="1" colspan="1">-1</td>
-              <td class="text-left" rowspan="1" colspan="1">bstr</td>
-              <td class="text-left" rowspan="1" colspan="1">Required</td>
-              <td class="text-left" rowspan="1" colspan="1">Ed25519ph-split, Ed448ph-split</td>
-              <td class="text-left" rowspan="1" colspan="1">
-                <code>context</code> argument to HashEdDSA signing. <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span>
 </td>
             </tr>
           </tbody>
@@ -1737,11 +1693,11 @@ COSE_Sign_Args = {
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-cose-signing-arguments-comm" class="section-name selfRef">COSE Signing Arguments Common Parameters</a>
         </h3>
 <p id="section-3.1-1">This document defines a set of common parameters for a COSE Signing Arguments object.
-<a href="#tbl-cose-sign-args-common" class="auto internal xref">Table 4</a> provides a summary of the parameters defined in this section.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<a href="#tbl-cose-sign-args-common" class="auto internal xref">Table 3</a> provides a summary of the parameters defined in this section.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <span id="name-common-parameters-of-the-co"></span><div id="tbl-cose-sign-args-common">
-<table class="center" id="table-4">
+<table class="center" id="table-3">
           <caption>
-<a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#table-3" class="selfRef">Table 3</a>:
 <a href="#name-common-parameters-of-the-co" class="selfRef">Common parameters of the COSE_Sign_Args structure.</a>
           </caption>
 <thead>
@@ -1772,18 +1728,6 @@ If the algorithms do not match, then the signature operation MUST be aborted wit
 </li>
         </ul>
 <p id="section-3.1-4">Definitions of COSE algorithms MAY define additional algorithm-specific parameters for <code>COSE_Sign_Args</code>.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.1-5">The following CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> example conveys the <code>context</code> argument
-for signing data using the Ed25519ph-split algorithm (see <a href="#eddsa-split" class="auto internal xref">Section 2.2</a>):<a href="#section-3.1-5" class="pilcrow">¶</a></p>
-<div class="lang-cddl sourcecode" id="section-3.1-6">
-<pre>
-example = {
-  3: -303,    ; alg: Ed25519ph-split (registration pending)
-
-              ; Ed25519ph context (byte string of 0 to 255 octets)
-  -1: 'Split Signing Algorithms for COSE',
-}
-</pre><a href="#section-3.1-6" class="pilcrow">¶</a>
-</div>
 </section>
 </div>
 </section>
@@ -2134,7 +2078,7 @@ Integer values less than -65536 are marked as private use.<a href="#section-6.2-
           <h4 id="name-initial-contents">
 <a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-initial-contents" class="section-name selfRef">Initial Contents</a>
           </h4>
-<p id="section-6.2.1-1">The initial contents of this registry are the values in <a href="#tbl-cose-sign-args-common" class="auto internal xref">Table 4</a>.
+<p id="section-6.2.1-1">The initial contents of this registry are the values in <a href="#tbl-cose-sign-args-common" class="auto internal xref">Table 3</a>.
 All of the entries in the "References" column of this registry point to this document.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2197,51 +2141,7 @@ Labels are expected to be reused for multiple algorithms.<a href="#section-6.3-3
           <h4 id="name-initial-contents-2">
 <a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-initial-contents-2" class="section-name selfRef">Initial Contents</a>
           </h4>
-<p id="section-6.3.1-1">The initial contents of this registry are as follows.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
-<div id="context">
-<section id="section-6.3.1.1">
-            <h5 id="name-context">
-<a href="#section-6.3.1.1" class="section-number selfRef">6.3.1.1. </a><a href="#name-context" class="section-name selfRef">context</a>
-            </h5>
-<span class="break"></span><dl class="dlParallel" id="section-6.3.1.1-1">
-              <dt id="section-6.3.1.1-1.1">Name:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.2">
-                <p id="section-6.3.1.1-1.2.1">context<a href="#section-6.3.1.1-1.2.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.3">Algorithms:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.4">
-                <p id="section-6.3.1.1-1.4.1">Ed25519ph, Ed25519ph-split, Ed448ph, Ed448ph-split<a href="#section-6.3.1.1-1.4.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.5">Label:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.6">
-                <p id="section-6.3.1.1-1.6.1">-1<a href="#section-6.3.1.1-1.6.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.7">Cbor Type:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.8">
-                <p id="section-6.3.1.1-1.8.1">bstr<a href="#section-6.3.1.1-1.8.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.9">Required:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.10">
-                <p id="section-6.3.1.1-1.10.1">Required<a href="#section-6.3.1.1-1.10.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.11">Description:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.12">
-                <p id="section-6.3.1.1-1.12.1">context argument to EdDSA signing and verification.<a href="#section-6.3.1.1-1.12.1" class="pilcrow">¶</a></p>
-</dd>
-              <dd class="break"></dd>
-<dt id="section-6.3.1.1-1.13">Reference:</dt>
-              <dd style="margin-left: 1.5em" id="section-6.3.1.1-1.14">
-                <p id="section-6.3.1.1-1.14.1"><a href="#eddsa-split" class="auto internal xref">Section 2.2</a><a href="#section-6.3.1.1-1.14.1" class="pilcrow">¶</a></p>
-</dd>
-            <dd class="break"></dd>
-</dl>
-</section>
-</div>
+<p id="section-6.3.1-1">This registry is initially empty.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2284,11 +2184,11 @@ to negotiate creation and usage of ARKG-derived keys for signing operations.
 Thus the YubiKey assumes the <em>signer</em> role while the WebAuthn Relying Party assumes the <em>digester</em> role.<a href="#section-7-3.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-7-4"><a href="#tbl-impl-status-matrix" class="auto internal xref">Table 5</a> summarizes implementation status for individual features.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-4"><a href="#tbl-impl-status-matrix" class="auto internal xref">Table 4</a> summarizes implementation status for individual features.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <span id="name-implementation-status-of-in"></span><div id="tbl-impl-status-matrix">
-<table class="center" id="table-5">
+<table class="center" id="table-4">
         <caption>
-<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#table-4" class="selfRef">Table 4</a>:
 <a href="#name-implementation-status-of-in" class="selfRef">Implementation status of individual features.</a>
         </caption>
 <thead>
@@ -2552,12 +2452,6 @@ ESP256-split-ARKG, ESP384-ARKG, ESP384-split-ARKG, ESP512-ARKG, ESP512-split-ARK
 </li>
         <li class="normal" id="appendix-B-2.10">
           <p id="appendix-B-2.10.1">Moved draft-bradleylundberg-cfrg-arkg from normative to informative references.<a href="#appendix-B-2.10.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-2.11">
-          <p id="appendix-B-2.11.1">Defined context input for Ed25519ph and Ed448ph.<a href="#appendix-B-2.11.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-2.12">
-          <p id="appendix-B-2.12.1">Added COSE_Sign_Args member for context argument for Ed25519ph-split and Ed448ph-split.<a href="#appendix-B-2.12.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-B-3">-00<a href="#appendix-B-3" class="pilcrow">¶</a></p>
