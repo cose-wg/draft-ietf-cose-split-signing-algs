@@ -401,7 +401,7 @@ The following algorithm identifiers are defined:
 The parameter -1 conveys the `context` input to HashEdDSA signing,
 and is REQUIRED for all the relevant `alg` values.
 
-{: #tbl-cose-args-hasheddsa title="Algorithm parameters for COSE_Sign_Args."}
+{: #tbl-cose-args-hasheddsa title="HashEdDSA algorithm parameters for COSE_Sign_Args."}
 | Name    | Label | Type | Required? | Algorithm | Description |
 |---------|-------|------|-----------|-----------|-------------|
 | context | -1    | bstr | Required  | Ed25519ph, Ed25519ph-split, Ed448ph, Ed448ph-split | `context` argument to HashEdDSA signing. [RFC8032] |
