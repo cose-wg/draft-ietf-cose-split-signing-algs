@@ -764,9 +764,9 @@ There are currently two known implementations using features defined by this spe
 As indicated in the previous section,
 the Internet-Draft of ARKG [I-D.bradleylundberg-ARKG] extends this specification with definitions for ARKG:
 
-- Section "5.2 COSE algorithms" defines COSE algorithm identifiers ESP256-split-ARKG, ESP384-split-ARKG
+- Its section "5.2 COSE algorithms" defines COSE algorithm identifiers ESP256-split-ARKG, ESP384-split-ARKG
   and ESP512-split-ARKG based on the ECDSA identifiers defined in this specification ({{ecdsa-split}}).
-- Section "5.3 COSE signing arguments" defines a representation for ARKG arguments
+- Its section "5.3 COSE signing arguments" defines a representation for ARKG arguments
   using the `COSE_Sign_Args` data structure defined in this specification ({{cose-sign-args}}).
 
 
