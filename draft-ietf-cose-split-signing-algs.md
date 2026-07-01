@@ -404,7 +404,7 @@ and is REQUIRED for all the relevant `alg` values.
 {: #tbl-cose-args-hasheddsa title="Algorithm parameters for COSE_Sign_Args."}
 | Name    | Label | Type | Required? | Algorithm | Description |
 |---------|-------|------|-----------|-----------|-------------|
-| context | -1    | bstr | Required  | Ed25519ph-split, Ed448ph-split | `context` argument to HashEdDSA signing. [RFC8032] |
+| context | -1    | bstr | Required  | Ed25519ph, Ed25519ph-split, Ed448ph, Ed448ph-split | `context` argument to HashEdDSA signing. [RFC8032] |
 
 
 ## Defining Split Signing Algorithms {#defining-split-algs}
