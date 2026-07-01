@@ -5,8 +5,8 @@
 COSE                                                    E. Lundberg, Ed.
 Internet-Draft                                                    Yubico
 Intended status: Standards Track                             M. B. Jones
-Expires: 1 January 2027                           Self-Issued Consulting
-                                                            30 June 2026
+Expires: 2 January 2027                           Self-Issued Consulting
+                                                             1 July 2026
 
 
                    Split Signing Algorithms for COSE
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 January 2027.
+   This Internet-Draft will expire on 2 January 2027.
 
 Copyright Notice
 
@@ -921,14 +921,14 @@ Table of Contents
    [I-D.bradleylundberg-ARKG] extends this specification with
    definitions for ARKG:
 
-   *  Section "5.2 COSE algorithms" defines COSE algorithm identifiers
-      ESP256-split-ARKG, ESP384-split-ARKG and ESP512-split-ARKG based
-      on the ECDSA identifiers defined in this specification
+   *  Its section "5.2 COSE algorithms" defines COSE algorithm
+      identifiers ESP256-split-ARKG, ESP384-split-ARKG and ESP512-split-
+      ARKG based on the ECDSA identifiers defined in this specification
       (Section 2.1).
 
-   *  Section "5.3 COSE signing arguments" defines a representation for
-      ARKG arguments using the COSE_Sign_Args data structure defined in
-      this specification (Section 3).
+   *  Its section "5.3 COSE signing arguments" defines a representation
+      for ARKG arguments using the COSE_Sign_Args data structure defined
+      in this specification (Section 3).
 
 8.  References
 
