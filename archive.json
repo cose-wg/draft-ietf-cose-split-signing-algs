@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-30T02:55:22.030828+00:00",
+  "timestamp": "2026-07-02T02:52:10.675464+00:00",
   "repo": "cose-wg/draft-ietf-cose-split-signing-algs",
   "labels": [
     {
@@ -49,6 +49,280 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
-  "pulls": []
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOSJnFe88AAAABHNBtNA",
+      "title": "Underspecified context parameter of Ed25519ph",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/issues/1",
+      "state": "CLOSED",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The Ed25519ph and Ed25519ctx ciphersuites [[RFC8032][]] have a free `context` parameter, unlike Ed25519 which defines this parameter to take a constant empty argument. We need to define how `context` is handled for Ed25519ph.\n\n[RFC8032]: https://www.rfc-editor.org/info/rfc8032/#section-5.1\n",
+      "createdAt": "2026-06-30T15:58:40Z",
+      "updatedAt": "2026-07-01T18:39:28Z",
+      "closedAt": "2026-07-01T18:39:28Z",
+      "comments": [
+        {
+          "author": "emlun",
+          "authorAssociation": "COLLABORATOR",
+          "body": "On the one hand, this `context` is precisely the kind of additional parameter `COSE_Sign_Args` is defined for. We should therefore define a `COSE_Sign_Args` member for `context` when `alg: Ed25519ph`, and use this instead of ARKG in our `COSE_Sign_Args` examples.\n\nOn the other hand, we're defining Ed25519ph as a general COSE algorithm, and thus it can be used in other COSE cryptograms. There are no [COSE_Sign1 or COSE_Signature](https://www.rfc-editor.org/info/rfc9052/#name-signing-objects) headers defined for carrying a `context` value, so unless we want to define them we should probably define that `context` MUST be empty when using the Ed25519ph algorithm identifier in COSE_Sign1 and COSE_Signature structures.",
+          "createdAt": "2026-06-30T16:09:42Z",
+          "updatedAt": "2026-06-30T16:09:42Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOSJnFe87sU-zn",
+      "title": "Editorial tweaks",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/pull/2",
+      "state": "MERGED",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-06-30T16:56:45Z",
+      "updatedAt": "2026-07-01T18:37:29Z",
+      "baseRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "baseRefName": "main",
+      "baseRefOid": "5641961b0d341c571abc1c35d2ca2957a29e0ecf",
+      "headRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "headRefName": "editorial-tweaks",
+      "headRefOid": "f9728e5f2fe54d75c1d7465b72209a056c2386e6",
+      "closedAt": "2026-07-01T18:37:29Z",
+      "mergedAt": "2026-07-01T18:37:29Z",
+      "mergedBy": "emlun",
+      "mergeCommit": {
+        "oid": "f9728e5f2fe54d75c1d7465b72209a056c2386e6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEmNYXQ",
+          "commit": {
+            "abbreviatedOid": "f9728e5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-06-30T19:25:41Z",
+          "updatedAt": "2026-06-30T19:25:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOSJnFe87sVGTe",
+      "title": "Remove normative references to ARKG",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/pull/3",
+      "state": "MERGED",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "(This PR currently targets #2 to to minimize the diff. The PRs are otherwise unrelated, but are hard to fully separate due to conflicts in the change history.)",
+      "createdAt": "2026-06-30T17:01:34Z",
+      "updatedAt": "2026-07-01T18:38:59Z",
+      "baseRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "baseRefName": "main",
+      "baseRefOid": "b6d76b929a403dcfd5d54b9aba84894f0b1e223f",
+      "headRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "headRefName": "no-arkg",
+      "headRefOid": "f10fbdf7f04ce3bb249710c4a0474d823c27c98a",
+      "closedAt": "2026-07-01T18:38:58Z",
+      "mergedAt": "2026-07-01T18:38:58Z",
+      "mergedBy": "emlun",
+      "mergeCommit": {
+        "oid": "f10fbdf7f04ce3bb249710c4a0474d823c27c98a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEmPFKA",
+          "commit": {
+            "abbreviatedOid": "3542cd5"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-06-30T19:29:22Z",
+          "updatedAt": "2026-06-30T19:29:22Z",
+          "comments": [
+            {
+              "originalPosition": 228,
+              "body": "Is this still true?  I thought we would be defining the split-ARKG args in the ARKG spec after the current refactoring.",
+              "createdAt": "2026-06-30T19:29:22Z",
+              "updatedAt": "2026-06-30T19:31:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEqO0Jw",
+          "commit": {
+            "abbreviatedOid": "3542cd5"
+          },
+          "author": "emlun",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-01T09:41:03Z",
+          "updatedAt": "2026-07-01T09:41:03Z",
+          "comments": [
+            {
+              "originalPosition": 228,
+              "body": "Indeed, that's meant to refer to those sections in the ARKG spec, not this one. I could prefix each bullet point with \"Its\" to make that clearer?\r\n```suggestion\r\n- Its section \"5.2 COSE algorithms\" defines COSE algorithm identifiers ESP256-split-ARKG, ESP384-split-ARKG\r\n  and ESP512-split-ARKG based on the ECDSA identifiers defined in this specification ({{ecdsa-split}}).\r\n- Its section \"5.3 COSE signing arguments\" defines a representation for ARKG arguments\r\n  using the `COSE_Sign_Args` data structure defined in this specification ({{cose-sign-args}}).\r\n```",
+              "createdAt": "2026-07-01T09:41:03Z",
+              "updatedAt": "2026-07-01T09:41:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEuKDHg",
+          "commit": {
+            "abbreviatedOid": "f10fbdf"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-01T18:05:25Z",
+          "updatedAt": "2026-07-01T18:05:25Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOSJnFe87sVHJJ",
+      "title": "Define context input for Ed25519ph and Ed448ph",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/pull/4",
+      "state": "MERGED",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #1.\r\n\r\n(This PR currently targets #3 to to minimize the diff. The PRs are otherwise unrelated, but are hard to fully separate due to conflicts in the change history.)",
+      "createdAt": "2026-06-30T17:02:08Z",
+      "updatedAt": "2026-07-01T18:39:27Z",
+      "baseRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "baseRefName": "main",
+      "baseRefOid": "f10fbdf7f04ce3bb249710c4a0474d823c27c98a",
+      "headRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "headRefName": "eddsa-context",
+      "headRefOid": "599cece2b32c7bd66dd921be3438af2a8937b4c6",
+      "closedAt": "2026-07-01T18:39:26Z",
+      "mergedAt": "2026-07-01T18:39:26Z",
+      "mergedBy": "emlun",
+      "mergeCommit": {
+        "oid": "599cece2b32c7bd66dd921be3438af2a8937b4c6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEmQxmQ",
+          "commit": {
+            "abbreviatedOid": "599cece"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-06-30T19:33:18Z",
+          "updatedAt": "2026-07-01T18:36:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOSJnFe87s0Kmf",
+      "title": "Fix outdated text in README",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/pull/5",
+      "state": "MERGED",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-07-01T18:42:18Z",
+      "updatedAt": "2026-07-01T18:55:38Z",
+      "baseRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "baseRefName": "main",
+      "baseRefOid": "599cece2b32c7bd66dd921be3438af2a8937b4c6",
+      "headRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "headRefName": "readme-title",
+      "headRefOid": "091567530078f99230d1d912209267b4f2fad7c5",
+      "closedAt": "2026-07-01T18:55:38Z",
+      "mergedAt": "2026-07-01T18:55:37Z",
+      "mergedBy": "selfissued",
+      "mergeCommit": {
+        "oid": "b11a304aeea9dc994198e1760c60638a4b88cbb9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEucdOg",
+          "commit": {
+            "abbreviatedOid": "0915675"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-01T18:55:28Z",
+          "updatedAt": "2026-07-01T18:55:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOSJnFe87s05ib",
+      "title": "Editorial fixups",
+      "url": "https://github.com/cose-wg/draft-ietf-cose-split-signing-algs/pull/6",
+      "state": "OPEN",
+      "author": "emlun",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- Fix that `context` parameter algorithm lists were inconsistent between the IANA registration section and the \"HashEdDSA\" section it referenced\r\n- Prefix HashEdDSA COSE_Sign_Args params table caption with \"HashEdDSA\"\r\n",
+      "createdAt": "2026-07-01T19:14:38Z",
+      "updatedAt": "2026-07-01T19:16:32Z",
+      "baseRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "baseRefName": "main",
+      "baseRefOid": "b11a304aeea9dc994198e1760c60638a4b88cbb9",
+      "headRepository": "cose-wg/draft-ietf-cose-split-signing-algs",
+      "headRefName": "fixups",
+      "headRefOid": "ce9550e2c7413f774d66c225a1a5d98c2e5525f9",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOSJnFe88AAAABEukHBw",
+          "commit": {
+            "abbreviatedOid": "ce9550e"
+          },
+          "author": "selfissued",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-01T19:16:32Z",
+          "updatedAt": "2026-07-01T19:16:32Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
