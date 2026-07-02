@@ -5,8 +5,8 @@
 COSE                                                    E. Lundberg, Ed.
 Internet-Draft                                                    Yubico
 Intended status: Standards Track                             M. B. Jones
-Expires: 2 January 2027                           Self-Issued Consulting
-                                                             1 July 2026
+Expires: 3 January 2027                           Self-Issued Consulting
+                                                             2 July 2026
 
 
                    Split Signing Algorithms for COSE
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2027.
+   This Internet-Draft will expire on 3 January 2027.
 
 Copyright Notice
 
@@ -431,14 +431,14 @@ Table of Contents
     +=========+=====+====+===========+==================+=============+
     | Name    |Label|Type| Required? | Algorithm        | Description |
     +=========+=====+====+===========+==================+=============+
-    | context |-1   |bstr| Required  | Ed25519ph-split, | context     |
-    |         |     |    |           | Ed448ph-split    | argument to |
-    |         |     |    |           |                  | HashEdDSA   |
-    |         |     |    |           |                  | signing.    |
+    | context |-1   |bstr| Required  | Ed25519ph,       | context     |
+    |         |     |    |           | Ed25519ph-split, | argument to |
+    |         |     |    |           | Ed448ph,         | HashEdDSA   |
+    |         |     |    |           | Ed448ph-split    | signing.    |
     |         |     |    |           |                  | [RFC8032]   |
     +---------+-----+----+-----------+------------------+-------------+
 
-             Table 3: Algorithm parameters for COSE_Sign_Args.
+        Table 3: HashEdDSA algorithm parameters for COSE_Sign_Args.
 
 2.3.  Defining Split Signing Algorithms
 
