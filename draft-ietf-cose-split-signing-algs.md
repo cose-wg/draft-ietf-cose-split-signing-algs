@@ -133,6 +133,7 @@ informative:
   RFC1958:
   RFC9380:
   RFC9413:
+  RFC9580:
   RFC9881:
   RFC9964:
   SECDSA:
@@ -246,8 +247,10 @@ Thus both ECDSA and RSA signatures are computed jointly by the host computing th
 and the smart card finalizing the signature on the digest;
 the host acts as _digester_ and the smart card acts as _signer_.
 
-TODO: Spec 3.4.1 only covers ECDSA and RSA, but some implementations also support Ed25519.
-Identify and include good references for how OpenPGP smart cards handle Ed25519.
+OpenPGP does not split EdDSA signatures in this way.
+{{Section 12.7 of RFC9580}} explains how input data for EdDSA signatures such as Ed25519 and Ed448
+is first hashed on the application level before signing the hash digest with the signature algorithm.
+If a smart card is used, the smart card performs the entire Ed25519 or Ed448 signing procedure as defined in [RFC8032].
 
 
 ### PKCS #11
@@ -838,6 +841,10 @@ for their reviews of and contributions to this specification.
 
 # Document History
 {: numbered="false"}
+
+-02
+
+* Reference RFC 9580 in "Prior art" section for how OpenPGP smart cards handle EdDSA.
 
 -01
 
