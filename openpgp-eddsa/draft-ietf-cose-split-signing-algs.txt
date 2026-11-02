@@ -5,8 +5,8 @@
 COSE                                                    E. Lundberg, Ed.
 Internet-Draft                                                    Yubico
 Intended status: Standards Track                             M. B. Jones
-Expires: 2 January 2027                           Self-Issued Consulting
-                                                             1 July 2026
+Expires: 6 May 2027                               Self-Issued Consulting
+                                                         2 November 2026
 
 
                    Split Signing Algorithms for COSE
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2027.
+   This Internet-Draft will expire on 6 May 2027.
 
 Copyright Notice
 
@@ -208,9 +208,12 @@ Table of Contents
    the signature on the digest; the host acts as _digester_ and the
    smart card acts as _signer_.
 
-   TODO: Spec 3.4.1 only covers ECDSA and RSA, but some implementations
-   also support Ed25519.  Identify and include good references for how
-   OpenPGP smart cards handle Ed25519.
+   OpenPGP does not split EdDSA signatures in this way.  Section 12.7 of
+   [RFC9580] explains how input data for EdDSA signatures such as
+   Ed25519 and Ed448 is first hashed on the application level before
+   signing the hash digest with the signature algorithm.  If a smart
+   card is used, the smart card performs the entire Ed25519 or Ed448
+   signing procedure as defined in [RFC8032].
 
 1.2.2.  PKCS #11
 
@@ -375,6 +378,10 @@ Table of Contents
       the EdDSA signing procedure.  This value is represented as M in
       the PureEdDSA signing procedure.
 
+   *  The context input MAY be conveyed to the _signer_ using the
+      COSE_Sign_Args structure defined in Section 3.  If not given,
+      context defaults to an empty octet string.
+
    *  The _signer_ executes the PureEdDSA signing procedure, where the
       value denoted M in the PureEdDSA signing procedure takes the value
       denoted PH(M) in the EdDSA signing procedure.
@@ -413,6 +420,28 @@ Table of Contents
     +-----------------+-------+--------------+------------------------+
 
                     Table 2: HashEdDSA algorithm values.
+
+   *  The context input MUST be the empty octet string when the
+      signature result is used in COSE structures without a way to
+      convey a context argument.  This includes the COSE_Sign1 and
+      COSE_Signature structures.
+
+   Table 3 defines a HashEdDSA-specific parameter for the COSE_Sign_Args
+   structure defined in Section 3.  The parameter -1 conveys the context
+   input to HashEdDSA signing, and is REQUIRED for all the relevant alg
+   values.
+
+    +=========+=====+====+===========+==================+=============+
+    | Name    |Label|Type| Required? | Algorithm        | Description |
+    +=========+=====+====+===========+==================+=============+
+    | context |-1   |bstr| Required  | Ed25519ph,       | context     |
+    |         |     |    |           | Ed25519ph-split, | argument to |
+    |         |     |    |           | Ed448ph,         | HashEdDSA   |
+    |         |     |    |           | Ed448ph-split    | signing.    |
+    |         |     |    |           |                  | [RFC8032]   |
+    +---------+-----+----+-----------+------------------+-------------+
+
+        Table 3: HashEdDSA algorithm parameters for COSE_Sign_Args.
 
 2.3.  Defining Split Signing Algorithms
 
@@ -481,7 +510,7 @@ Table of Contents
 3.1.  COSE Signing Arguments Common Parameters
 
    This document defines a set of common parameters for a COSE Signing
-   Arguments object.  Table 3 provides a summary of the parameters
+   Arguments object.  Table 4 provides a summary of the parameters
    defined in this section.
 
     +======+=======+============+=================+==================+
@@ -491,7 +520,7 @@ Table of Contents
     |      |       |            |                 | algorithm to use |
     +------+-------+------------+-----------------+------------------+
 
-       Table 3: Common parameters of the COSE_Sign_Args structure.
+       Table 4: Common parameters of the COSE_Sign_Args structure.
 
    *  alg: This parameter identifies the signing algorithm the
       additional arguments apply to.  The signer MUST verify that this
@@ -501,6 +530,16 @@ Table of Contents
 
    Definitions of COSE algorithms MAY define additional algorithm-
    specific parameters for COSE_Sign_Args.
+
+   The following CDDL [RFC8610] example conveys the context argument for
+   signing data using the Ed25519ph-split algorithm (see Section 2.2):
+
+   example = {
+     3: -303,    ; alg: Ed25519ph-split (registration pending)
+
+                 ; Ed25519ph context (byte string of 0 to 255 octets)
+     -1: 'Split Signing Algorithms for COSE',
+   }
 
 4.  Security Considerations
 
@@ -758,7 +797,7 @@ Table of Contents
 
 6.2.1.  Initial Contents
 
-   The initial contents of this registry are the values in Table 3.  All
+   The initial contents of this registry are the values in Table 4.  All
    of the entries in the "References" column of this registry point to
    this document.
 
@@ -795,7 +834,23 @@ Table of Contents
 
 6.3.1.  Initial Contents
 
-   This registry is initially empty.
+   The initial contents of this registry are as follows.
+
+6.3.1.1.  context
+
+   Name:  context
+
+   Algorithms:  Ed25519ph, Ed25519ph-split, Ed448ph, Ed448ph-split
+
+   Label:  -1
+
+   Cbor Type:  bstr
+
+   Required:  Required
+
+   Description:  context argument to EdDSA signing and verification.
+
+   Reference:  Section 2.2
 
 7.  Implementation Status
 
@@ -837,7 +892,7 @@ Table of Contents
       Thus the YubiKey assumes the _signer_ role while the WebAuthn
       Relying Party assumes the _digester_ role.
 
-   Table 4 summarizes implementation status for individual features.
+   Table 5 summarizes implementation status for individual features.
 
    +===================+============================+==========+======+
    | Feature           | Defined by                 | Digester |Signer|
@@ -861,7 +916,7 @@ Table of Contents
    | COSE_Sign_Args    | This specification         | wwWallet |Yubico|
    +-------------------+----------------------------+----------+------+
 
-          Table 4: Implementation status of individual features.
+          Table 5: Implementation status of individual features.
 
 7.1.  Dependent Specifications
 
@@ -944,9 +999,9 @@ Table of Contents
    [I-D.bradleylundberg-ARKG]
               Lundberg, E. and J. Bradley, "The Asynchronous Remote Key
               Generation (ARKG) algorithm", Work in Progress, Internet-
-              Draft, draft-bradleylundberg-cfrg-arkg-10, 27 February
-              2026, <https://datatracker.ietf.org/doc/html/draft-
-              bradleylundberg-cfrg-arkg-10>.
+              Draft, draft-bradleylundberg-cfrg-arkg-11, 5 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-
+              bradleylundberg-cfrg-arkg-11>.
 
    [I-D.COSE-Hash-Envelope]
               Steele, O., Lasker, S., and H. Birkholz, "COSE Hash
@@ -992,6 +1047,10 @@ Table of Contents
               Protocols", RFC 9413, DOI 10.17487/RFC9413, June 2023,
               <https://www.rfc-editor.org/rfc/rfc9413>.
 
+   [RFC9580]  Wouters, P., Ed., Huigens, D., Winter, J., and Y. Niibe,
+              "OpenPGP", RFC 9580, DOI 10.17487/RFC9580, July 2024,
+              <https://www.rfc-editor.org/rfc/rfc9580>.
+
    [RFC9881]  Massimo, J., Kampanakis, P., Turner, S., and B. E.
               Westerbaan, "Internet X.509 Public Key Infrastructure --
               Algorithm Identifiers for the Module-Lattice-Based Digital
@@ -1015,6 +1074,11 @@ Acknowledgements
    contributions to this specification.
 
 Document History
+
+   -02 (in progress)
+
+   *  Reference RFC 9580 in "Prior art" section for how OpenPGP smart
+      cards handle EdDSA.
 
    -01
 
@@ -1045,6 +1109,11 @@ Document History
 
    *  Moved draft-bradleylundberg-cfrg-arkg from normative to
       informative references.
+
+   *  Defined context input for Ed25519ph and Ed448ph.
+
+   *  Added COSE_Sign_Args member for context argument for Ed25519ph-
+      split and Ed448ph-split.
 
    -00
 
