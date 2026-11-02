@@ -1075,7 +1075,7 @@ Acknowledgements
 
 Document History
 
-   -02 (in progress)
+   -02
 
    *  Reference RFC 9580 in "Prior art" section for how OpenPGP smart
       cards handle EdDSA.
